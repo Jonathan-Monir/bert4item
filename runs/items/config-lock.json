@@ -1,0 +1,60 @@
+{
+    "envs": {
+        "RUN_ROOT": "D:\\Jonathan_Monir\\Downloads\\bert4item\\bert4item-main\\runs",
+        "DATA_ROOT": "D:\\Jonathan_Monir\\Downloads\\bert4item\\bert4item-main\\data",
+        "ROUGH_ROOT": "D:\\Jonathan_Monir\\Downloads\\bert4item\\bert4item-main\\roughs",
+        "CPU_COUNT": 8,
+        "GPU_COUNT": 0
+    },
+    "solver": "BERT4RecSolver",
+    "dataset": "template",
+    "dataloader": {
+        "sequence_len": 200,
+        "max_num_segments": 0,
+        "random_cut_prob": 0.0,
+        "mlm_mask_prob": 0.15,
+        "nwp_replace_prob": 0.02,
+        "use_session_token": false,
+        "random_seed": 12345
+    },
+    "model": {
+        "num_layers": 4,
+        "hidden_dim": 256,
+        "temporal_dim": 0,
+        "num_heads": 4,
+        "dropout_prob": 0.15,
+        "random_seed": 12345
+    },
+    "train": {
+        "epoch": 400,
+        "patience": 200,
+        "batch_size": 64,
+        "optimizer": {
+            "algorithm": "adamw",
+            "lr": 0.001,
+            "beta1": 0.9,
+            "beta2": 0.999,
+            "weight_decay": 0.05,
+            "amsgrad": false
+        },
+        "scheduler": {
+            "algorithm": "step",
+            "step_size": 50,
+            "gamma": 1.0
+        }
+    },
+    "metric": {
+        "ks": [
+            1,
+            5,
+            10,
+            20,
+            50,
+            100
+        ],
+        "pivot": "NDCG@10"
+    },
+    "memo": "",
+    "name": "items",
+    "run_dir": "runs\\items"
+}
