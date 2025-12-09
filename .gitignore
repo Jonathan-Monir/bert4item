@@ -144,7 +144,7 @@ cython_debug/
 .DS_Store
 
 # personal
-data/
+# data/
 images/
 roughs
 runs*/**/logs/
