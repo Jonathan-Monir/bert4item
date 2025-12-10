@@ -1,3 +1,6 @@
+# preprocess.py
+# python preprocess.py prepare items --data_root ./data --rough_root ./roughs
+
 import os
 import time
 import pickle
@@ -28,10 +31,10 @@ DNAMES = (
 )
 
 MAX_SEQUENCE_LENGTH = 200
-MIN_SESSION_COUNT_PER_USER = 2
-MIN_ITEM_COUNT_PER_SESSION = 2
+MIN_SESSION_COUNT_PER_USER = 1
+MIN_ITEM_COUNT_PER_SESSION = 1
 MIN_ITEM_COUNT_PER_USER = 5
-MIN_USER_COUNT_PER_ITEM = 5
+MIN_USER_COUNT_PER_ITEM = 10
 SESSION_WINDOW = 24 * 60 * 60
 NUM_NEGATIVE_SAMPLES = 100
 NEGATIVE_SAMPLER_SEED = SEED
@@ -60,7 +63,6 @@ def task_prepare_items(args):
     df_rows = df_rows.rename(columns={"CustomerId": "uid", "MenuItemId": "iid"})
     df_rows = df_rows[['uid', 'iid', 'timestamp']]
     
-    print(df_rows)
     print("Timestamp range:", df_rows['timestamp'].min(), "to", df_rows['timestamp'].max())
     
     # run general preprocessing
@@ -448,6 +450,6 @@ def task_count_stats(args):
 
 
 if __name__ == '__main__':
-    # task_test("runs/items/items.parquet")
     args = parse_args()
+    task_prepare_items(args)
     globals()[f'task_{args.task}_{args.name}'](args)

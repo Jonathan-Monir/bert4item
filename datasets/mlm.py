@@ -1,3 +1,4 @@
+# datasets/mlm.py
 # MLM: Masked Language Model
 
 import os
@@ -48,8 +49,12 @@ class MLMTrainDataset(Dataset):
         # load data
         with open(os.path.join(self.data_root, name, 'iid2iindex.pkl'), 'rb') as fp:
             self.iid2iindex = pickle.load(fp)
+            # print("self.iid2iindex")
+            # print(self.iid2iindex)
         with open(os.path.join(self.data_root, name, 'train.pkl'), 'rb') as fp:
             self.uindex2rows_train = pickle.load(fp)
+            # print("self.uindex2rows_train")
+            # print(self.uindex2rows_train)
 
         # settle down
         self.uindices = list(self.uindex2rows_train.keys())

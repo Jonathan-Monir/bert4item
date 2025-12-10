@@ -1,3 +1,4 @@
+# solvers/base.py
 import os
 import json
 import logging

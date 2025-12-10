@@ -1,3 +1,4 @@
+# entry.py
 import os
 import json
 import argparse
@@ -46,7 +47,7 @@ default_config = {
         'random_seed': SEED,
     },
     'train': {
-        'epoch': 400,
+        'epoch': 5,
         'patience': 200,
         'batch_size': 256,
         'optimizer': {
@@ -124,6 +125,7 @@ if __name__ == '__main__':
     # settle config
     config['name'] = args['name']
     config['run_dir'] = run_dir
+    print(config)
 
     # lock config
     with open(os.path.join(run_dir, 'config-lock.json'), 'w') as fp:
